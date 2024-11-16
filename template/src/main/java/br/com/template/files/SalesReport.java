@@ -1,8 +1,10 @@
-package br.com.template.generator;
+package br.com.template.files;
+
+import br.com.template.generator.FileGenerator;
 
 import java.util.Map;
 
-public class SalesFile extends FileGenerator {
+public class SalesReport extends FileGenerator {
     @Override
     protected String generateFileInfo(Map<String, Object> properties) {
         StringBuilder sb = new StringBuilder();
@@ -11,15 +13,11 @@ public class SalesFile extends FileGenerator {
         for(String prop : properties.keySet()) {
             String line = String.format("%s: %s\n", prop, properties.get(prop));
             sb.append(line);
-            if(properties.get(prop) instanceof Long) {
-                salesSum = ((Long)properties.get(prop)) + salesSum;
-            }
+            salesSum = isLongNumber(properties.get(prop)) + salesSum;
         }
-
-        sb.append("Total Sales/2024: " + salesSum);
+        sb.append("Total Sales/2024: ").append(salesSum);
 
         return sb.toString();
     }
-
 
 }
