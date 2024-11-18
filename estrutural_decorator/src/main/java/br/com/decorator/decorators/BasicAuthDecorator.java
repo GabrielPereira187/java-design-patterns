@@ -12,7 +12,7 @@ public class BasicAuthDecorator extends BaseAuthDecorator{
         super.authenticateUser(username, password);
         String dbPassword = database.getPasswordByUsername(username);
         if(dbPassword.equals(password)) {
-            System.out.println("User authenticated");
+            System.out.println("User authenticated with basic auth");
         } else {
             System.out.println("Auth Failed");
         }
